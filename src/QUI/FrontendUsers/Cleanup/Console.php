@@ -148,6 +148,26 @@ class Console extends QUI\System\Console\Tool
             $where[] = '('.implode(" OR ", $whereOr).')';
         }
 
+        // custom attributes
+        foreach ($this->params as $k => $v) {
+            $k = str_replace('--', '', $k);
+
+            // $v is boolean TRUE if the user did not specify a value via CLI but only the attribute name
+            if ($this->inConsole() && $v === true) {
+                continue;
+            }
+
+            if (mb_strpos($k, 'attr-') === 0) {
+                $attribute = mb_substr($k, 5);
+
+                if (is_bool($v)) {
+                    $v = $v ? 'true' : 'false';
+                }
+
+                $where[] = '`extra` LIKE "%\"'.$attribute.'\":'.$v.'%" OR `extra` LIKE "%\"'.$attribute.'\":\"'.$v.'\"%"';
+            }
+        }
+
         if (empty($where)) {
             $this->exitFail('No filter criteria for users given. Please specify at least one filter criterion');
             return;
