@@ -3,6 +3,7 @@
 namespace QUI\FrontendUsers\Cleanup;
 
 use QUI;
+use QUI\FrontendUsers\Handler as FrontendUsers;
 
 class Cron
 {
@@ -16,7 +17,14 @@ class Cron
         $ConsoleTool = new Console();
 
         foreach ($params as $k => $v) {
-            $ConsoleTool->setArgument($k, $v);
+            switch ($k) {
+                case 'emailVerified':
+                    $ConsoleTool->setArgument('attr-' . FrontendUsers::USER_ATTR_EMAIL_VERIFIED, true);
+                    break;
+
+                default:
+                    $ConsoleTool->setArgument($k, $v);
+            }
         }
 
         $ConsoleTool->setArgument('delete', true);
