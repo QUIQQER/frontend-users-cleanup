@@ -19,8 +19,7 @@ class Cron
             $ConsoleTool->setArgument($k, $v);
         }
 
-        ob_start();
+        $ConsoleTool->setArgument('delete', true);
         $ConsoleTool->execute();
-        ob_clean();
     }
 }

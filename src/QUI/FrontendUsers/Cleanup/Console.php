@@ -150,6 +150,7 @@ class Console extends QUI\System\Console\Tool
 
         if (empty($where)) {
             $this->exitFail('No filter criteria for users given. Please specify at least one filter criterion');
+            return;
         }
 
         $sql .= ' WHERE '.implode(' AND ', $where);
@@ -160,6 +161,7 @@ class Console extends QUI\System\Console\Tool
             $result = $Stmt->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\Exception $Exception) {
             $this->exitFail($Exception->getMessage());
+            return;
         }
 
         $this->writeLn("\n");
@@ -169,12 +171,50 @@ class Console extends QUI\System\Console\Tool
 
             $this->writeLn("\n");
             $this->exitSuccess();
+            return;
         }
 
-        $Climate = new CLImate();
-        $Climate->table($result);
+        $delete = $this->getArgument('delete') === true;
 
-        $this->writeLn("\nNumber of users to delete: ".count($result));
+        $this->writeLn("Number of users to delete: ".count($result)."\n");
+
+        if ($this->inConsole()) {
+            $Climate = new CLImate();
+            $Climate->table($result);
+
+            if (empty($delete)) {
+                $this->writeLn("Should the selected users be deleted from the QUIQQER system? [y/N]: ");
+                $deleteInput = $this->readInput();
+
+                if (mb_strtolower($deleteInput) === 'y') {
+                    $delete = true;
+                }
+            }
+        }
+
+        if ($delete === true) {
+            $Users          = QUI::getUsers();
+            $deletedCounter = 0;
+
+            $this->writeLn("Deleting users...\n");
+
+            foreach ($result as $row) {
+                $uid = $row['id'];
+                $this->writeLn("Delete user #".$uid."...");
+
+                try {
+                    $User = $Users->get($uid);
+                    $User->delete();
+
+                    $deletedCounter++;
+                    $this->write(" OK!");
+                } catch (\Exception $Exception) {
+                    $this->write(" ERROR: ".$Exception->getMessage());
+                }
+            }
+
+            $this->writeLn("\nDeleted users: ".$deletedCounter."\n");
+        }
 
         $this->writeLn("\n");
         $this->exitSuccess();
@@ -303,7 +343,9 @@ class Console extends QUI\System\Console\Tool
         $this->writeLn('Konsolen-Tool Ausführung erfolgreich abgeschlossen.');
         $this->writeLn("");
 
-        exit(0);
+        if ($this->inConsole()) {
+            exit(0);
+        }
     }
 
     /**
@@ -320,6 +362,18 @@ class Console extends QUI\System\Console\Tool
         $this->writeLn("");
         $this->writeLn("");
 
-        exit(1);
+        if ($this->inConsole()) {
+            exit(1);
+        }
+    }
+
+    /**
+     * Check if environment is CONSOLEs
+     *
+     * @return bool
+     */
+    protected function inConsole()
+    {
+        return defined('QUIQQER_CONSOLE') && QUIQQER_CONSOLE;
     }
 }
