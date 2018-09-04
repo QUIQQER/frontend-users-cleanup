@@ -74,6 +74,13 @@ class Console extends QUI\System\Console\Tool
         );
 
         $this->addArgument(
+            'notInGroups',
+            'Delete users who are NOT in the given groups (comma-separated group IDs)',
+            false,
+            true
+        );
+
+        $this->addArgument(
             'delete',
             'Actually delete the users that are selected via the given filters',
             false,
@@ -148,6 +155,19 @@ class Console extends QUI\System\Console\Tool
             $where[] = '('.implode(" OR ", $whereOr).')';
         }
 
+        // notInGroups
+        $notInGroups = $this->getNotInGroups();
+
+        if (!empty($notInGroups)) {
+            $whereOr = [];
+
+            foreach ($notInGroups as $groupId) {
+                $whereOr[] = '`usergroup` NOT LIKE "%,'.$groupId.',%"';
+            }
+
+            $where[] = '('.implode(" OR ", $whereOr).')';
+        }
+
         // custom attributes
         foreach ($this->params as $k => $v) {
             $k = str_replace('--', '', $k);
@@ -172,6 +192,12 @@ class Console extends QUI\System\Console\Tool
             $this->exitFail('No filter criteria for users given. Please specify at least one filter criterion');
             return;
         }
+
+        // SuperUsers can never be deleted by this script
+        $where[] = '`su` != 1';
+
+        // Only delete users that have registered via frontend
+        $where[] = '`extra` NOT LIKE "%\"quiqqer.frontendUsers.registrar\"%"';
 
         $sql .= ' WHERE '.implode(' AND ', $where);
 
@@ -339,6 +365,28 @@ class Console extends QUI\System\Console\Tool
     protected function getInGroups()
     {
         $groupIds = $this->getArgument('inGroups');
+
+        if (empty($groupIds)) {
+            return false;
+        }
+
+        $groupIds = explode(',', $groupIds);
+
+        array_walk($groupIds, function (&$v) {
+            $v = (int)$v;
+        });
+
+        return $groupIds;
+    }
+
+    /**
+     * Get notInGroups filter
+     *
+     * @return false|int[] - False if not configured; int[] with group IDs otherwise
+     */
+    protected function getNotInGroups()
+    {
+        $groupIds = $this->getArgument('notInGroups');
 
         if (empty($groupIds)) {
             return false;
