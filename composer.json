@@ -17,7 +17,7 @@
         "url": "http://www.pcsg.de"
     },
     "require": {
-        
+        "quiqqer/frontend-users": "1.*|*@dev"
     }
     ,"autoload": {
   "psr-4": {
