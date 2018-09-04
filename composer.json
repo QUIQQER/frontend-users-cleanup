@@ -2,7 +2,7 @@
     "name" : "quiqqer/frontend-users-cleanup",
     "type" : "quiqqer-module",
     "description" : "Console tool and cron for mass-deleting users who meet certain requirements",
-    "version" : "dev-dev",
+    "version" : "dev-master",
     "license" : "GPL-3.0+",
     "authors" : [
         {
@@ -17,7 +17,7 @@
         "url": "http://www.pcsg.de"
     },
     "require": {
-        
+        "quiqqer/frontend-users": "1.*|dev-master"
     }
     ,"autoload": {
   "psr-4": {
