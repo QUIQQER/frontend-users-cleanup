@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crons>
+    <cron exec="\QUI\FrontendUsers\Cleanup\Cron::cleanup">
+        <title>
+            <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.title"/>
+        </title>
+        <description>
+            <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.description"/>
+        </description>
+        <params>
+            <param name="createDateFrom" type="string"/>
+            <param name="createDateTo" type="string"/>
+            <param name="createDateTo" type="string"/>
+            <param name="atLeastDaysOld" type="number"/>
+            <param name="atLeastAtLeastNotLoggedInForDays" type="number"/>
+            <param name="activeStatus" type="number"/>
+            <param name="inGroups" type="string"/>
+        </params>
+    </cron>
+</crons>

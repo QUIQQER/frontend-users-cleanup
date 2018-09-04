@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <locales>
-  <groups name="quiqqer/frontend-users-cleanup" datatype="php,js">
-    <locale name="package.title">
-      <de><![CDATA[Frontend-Benutzer - Benutzerkonten aufräumen]]></de>
-      <en><![CDATA[Frontend users - Cleanup user accounts]]></en>
-    </locale>
-  <locale name="package.description"><de><![CDATA[Konsolen-Tool und Cron für die Massenlöschung von Benutzern, die bestimmte Bedingungen erfüllen]]></de><en><![CDATA[Console tool and cron for mass-deleting users who meet certain requirements]]></en></locale></groups>
+    <groups name="quiqqer/frontend-users-cleanup" datatype="php,js">
+        <locale name="package.title">
+            <de><![CDATA[Frontend-Benutzer - Benutzerkonten aufräumen]]></de>
+            <en><![CDATA[Frontend users - Cleanup user accounts]]></en>
+        </locale>
+        <locale name="package.description">
+            <de><![CDATA[Konsolen-Tool und Cron für die Massenlöschung von Benutzern, die bestimmte Bedingungen erfüllen]]></de>
+            <en><![CDATA[Console tool and cron for mass-deleting users who meet certain requirements]]></en>
+        </locale>
+
+        <!-- Cron -->
+        <locale name="cron.cleanup.title">
+            <de><![CDATA[Benutzer aufräumen]]></de>
+            <en><![CDATA[Cleanup users]]></en>
+        </locale>
+        <locale name="cron.cleanup.description">
+            <de><![CDATA[Löscht automatisiert Benutzerkonten anhand der eingestellten Filterkriterien.]]></de>
+            <en><![CDATA[Automatically deletes user accounts based on the configured filter criteria.]]></en>
+        </locale>
+    </groups>
 </locales>
