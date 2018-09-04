@@ -2,6 +2,7 @@
 
 namespace QUI\FrontendUsers\Cleanup;
 
+use function GuzzleHttp\Promise\queue;
 use League\CLImate\CLImate;
 use QUI;
 
@@ -184,7 +185,7 @@ class Console extends QUI\System\Console\Tool
                     $v = $v ? 'true' : 'false';
                 }
 
-                $where[] = '`extra` LIKE "%\"'.$attribute.'\":'.$v.'%" OR `extra` LIKE "%\"'.$attribute.'\":\"'.$v.'\"%"';
+                $where[] = '(`extra` LIKE "%\"'.$attribute.'\":'.$v.'%" OR `extra` LIKE "%\"'.$attribute.'\":\"'.$v.'\"%")';
             }
         }
 
@@ -197,7 +198,7 @@ class Console extends QUI\System\Console\Tool
         $where[] = '`su` != 1';
 
         // Only delete users that have registered via frontend
-        $where[] = '`extra` NOT LIKE "%\"quiqqer.frontendUsers.registrar\"%"';
+        $where[] = '`extra` LIKE "%\"quiqqer.frontendUsers.registrar\"%"';
 
         $sql .= ' WHERE '.implode(' AND ', $where);
 
