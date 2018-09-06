@@ -241,6 +241,7 @@ class Console extends QUI\System\Console\Tool
 
         if ($delete === true) {
             $Users          = QUI::getUsers();
+            $Events         = QUI::getEvents();
             $deletedCounter = 0;
 
             $this->writeLn("Deleting users...\n");
@@ -251,6 +252,9 @@ class Console extends QUI\System\Console\Tool
 
                 try {
                     $User = $Users->get($uid);
+
+                    $Events->fireEvent('quiqqerFrontendUsersCleanupDeleteUser', [$User]);
+
                     $User->delete();
 
                     $deletedCounter++;
