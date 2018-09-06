@@ -16,6 +16,7 @@
             <param name="activeStatus" type="number"/>
             <param name="inGroups" type="string"/>
             <param name="notInGroups" type="string"/>
+            <param name="emailVerified" type="number"/>
         </params>
     </cron>
 </crons>
