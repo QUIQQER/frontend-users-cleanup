@@ -12,7 +12,7 @@
             <param name="createDateTo" type="string"/>
             <param name="createDateTo" type="string"/>
             <param name="atLeastDaysOld" type="number"/>
-            <param name="atLeastAtLeastNotLoggedInForDays" type="number"/>
+            <param name="atLeastNotLoggedInForDays" type="number"/>
             <param name="activeStatus" type="number"/>
             <param name="inGroups" type="string"/>
             <param name="notInGroups" type="string"/>

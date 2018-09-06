@@ -54,7 +54,7 @@ class Console extends QUI\System\Console\Tool
         );
 
         $this->addArgument(
-            'atLeastAtLeastNotLoggedInForDays',
+            'atLeastNotLoggedInForDays',
             'Delete users whose last login was X or more days ago. [X = positive integer]',
             false,
             true
@@ -129,11 +129,11 @@ class Console extends QUI\System\Console\Tool
             $where[] = '`regdate` <='.$atLeastDaysOld;
         }
 
-        // atLeastAtLeastNotLoggedInForDays
-        $atLeastAtLeastNotLoggedInForDays = $this->getAtLeastNotLoggedInForDays();
+        // atLeastNotLoggedInForDays
+        $atLeastNotLoggedInForDays = $this->getAtLeastNotLoggedInForDays();
 
-        if (!empty($atLeastAtLeastNotLoggedInForDays)) {
-            $where[] = '`lastvisit` <='.$atLeastAtLeastNotLoggedInForDays;
+        if (!empty($atLeastNotLoggedInForDays)) {
+            $where[] = '`lastvisit` <='.$atLeastNotLoggedInForDays;
         }
 
         // activeStatus
@@ -322,13 +322,13 @@ class Console extends QUI\System\Console\Tool
     }
 
     /**
-     * Get atLeastAtLeastNotLoggedInForDays filter
+     * Get atLeastNotLoggedInForDays filter
      *
      * @return false|int - False if not configured; timestamp (max login date) otherwise
      */
     protected function getAtLeastNotLoggedInForDays()
     {
-        $days = $this->getArgument('atLeastAtLeastNotLoggedInForDays');
+        $days = $this->getArgument('atLeastNotLoggedInForDays');
 
         if (empty($days) || !is_numeric($days)) {
             return false;
