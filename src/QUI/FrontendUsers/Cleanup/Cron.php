@@ -19,7 +19,7 @@ class Cron
         foreach ($params as $k => $v) {
             switch ($k) {
                 case 'emailVerified':
-                    $ConsoleTool->setArgument('attr-' . FrontendUsers::USER_ATTR_EMAIL_VERIFIED, true);
+                    $ConsoleTool->setArgument('attr-' . FrontendUsers::USER_ATTR_EMAIL_VERIFIED, boolval($v));
                     break;
 
                 default:
