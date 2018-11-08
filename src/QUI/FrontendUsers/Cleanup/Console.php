@@ -198,7 +198,7 @@ class Console extends QUI\System\Console\Tool
         $where[] = '`su` != 1';
 
         // Only delete users that have registered via frontend
-        $where[] = '`extra` LIKE "%\"quiqqer.frontendUsers.registrar\"%"';
+        $where[] = '`extra` NOT LIKE "%\"quiqqer.frontendUsers.registrar\":false%"';
 
         $sql .= ' WHERE '.implode(' AND ', $where);
 
