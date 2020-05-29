@@ -415,10 +415,6 @@ class Console extends QUI\System\Console\Tool
     {
         $this->writeLn('Konsolen-Tool Ausführung erfolgreich abgeschlossen.');
         $this->writeLn("");
-
-        if ($this->inConsole()) {
-            exit(0);
-        }
     }
 
     /**
@@ -434,10 +430,6 @@ class Console extends QUI\System\Console\Tool
         $this->writeLn($msg);
         $this->writeLn("");
         $this->writeLn("");
-
-        if ($this->inConsole()) {
-            exit(1);
-        }
     }
 
     /**
