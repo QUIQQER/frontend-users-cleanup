@@ -8,14 +8,30 @@
             <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.description"/>
         </description>
         <params>
-            <param name="createDateFrom" type="string"/>
-            <param name="createDateTo" type="string"/>
-            <param name="atLeastDaysOld" type="number"/>
-            <param name="atLeastNotLoggedInForDays" type="number"/>
-            <param name="activeStatus" type="number"/>
-            <param name="inGroups" type="string"/>
-            <param name="notInGroups" type="string"/>
-            <param name="emailVerified" type="number"/>
+            <param name="createDateFrom" type="string">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.createDateFrom"/>
+            </param>
+            <param name="createDateTo" type="string">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.createDateTo"/>
+            </param>
+            <param name="atLeastDaysOld" type="number">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.atLeastDaysOld"/>
+            </param>
+            <param name="atLeastNotLoggedInForDays" type="number">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.atLeastNotLoggedInForDays"/>
+            </param>
+            <param name="activeStatus" type="number">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.activeStatus"/>
+            </param>
+            <param name="inGroups" type="string">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.inGroups"/>
+            </param>
+            <param name="notInGroups" type="string">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.notInGroups"/>
+            </param>
+            <param name="emailVerified" type="number">
+                <locale group="quiqqer/frontend-users-cleanup" var="cron.cleanup.param.emailVerified"/>
+            </param>
         </params>
     </cron>
 </crons>
