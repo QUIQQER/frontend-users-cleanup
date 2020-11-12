@@ -2,6 +2,7 @@
   "name": "quiqqer\/frontend-users-cleanup",
   "type": "quiqqer-module",
   "description": "Console tool and cron for mass-deleting users who meet certain criteria",
+  "version": "1.0.0",
   "license": "GPL-3.0+",
   "authors": [
     {
