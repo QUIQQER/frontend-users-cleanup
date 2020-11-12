@@ -1,26 +1,26 @@
 {
-    "name": "quiqqer\/frontend-users-cleanup",
-    "type": "quiqqer-module",
-    "description": "Console tool and cron for mass-deleting users who meet certain requirements",
-    "license": "GPL-3.0+",
-    "authors": [
-        {
-            "name": "Patrick M\u00fcller",
-            "email": "p.mueller@pcsg.de",
-            "homepage": "http:\/\/www.pcsg.de",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "support@pcsg.de",
-        "url": "http:\/\/www.pcsg.de"
-    },
-    "require": {
-        "quiqqer\/frontend-users": "1.*|*@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "QUI\\FrontendUsers\\Cleanup\\": "src\/QUI\/FrontendUsers\/Cleanup"
-        }
+  "name": "quiqqer\/frontend-users-cleanup",
+  "type": "quiqqer-module",
+  "description": "Console tool and cron for mass-deleting users who meet certain criteria",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Patrick M\u00fcller",
+      "email": "p.mueller@pcsg.de",
+      "homepage": "https:\/\/www.pcsg.de",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "email": "support@pcsg.de",
+    "url": "https:\/\/www.pcsg.de"
+  },
+  "require": {
+    "quiqqer\/frontend-users": "^1|*@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "QUI\\FrontendUsers\\Cleanup\\": "src\/QUI\/FrontendUsers\/Cleanup"
+    }
+  }
 }
