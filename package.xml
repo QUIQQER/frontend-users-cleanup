@@ -9,10 +9,6 @@
 
     <image src="URL_OPT_DIR/quiqqer/frontend-users-cleanup/bin/images/Logo.png"/>
 
-    <preview>
-        <image src="URL_OPT_DIR/quiqqer/frontend-users-cleanup/bin/images/preview/Frontend_Registration.png"/>
-    </preview>
-
     <support>
         <email><![CDATA[support@pcsg.de]]></email>
         <forum><![CDATA[https://community.quiqqer.com]]></forum>
